@@ -1,4 +1,4 @@
-const CACHE = "leanbuild-static-v2";
+const CACHE = "leanbuild-static-v4";
 const ASSETS = ["./", "./index.html", "./styles.css", "./app.js", "./community.js", "./supabase-config.js", "./manifest.webmanifest", "./icons/icon.svg", "./icons/icon-192.png", "./icons/icon-512.png"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
