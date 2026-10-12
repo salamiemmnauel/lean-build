@@ -11,3 +11,7 @@
 
 /* Workout search and split leaderboards */
 .exercise-filters{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(160px,1fr) minmax(160px,1fr);gap:12px;margin:16px 0 18px}.exercise-library-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.exercise-library-item{border:1px solid var(--line);border-radius:13px;padding:14px;min-width:0}.exercise-library-top{display:flex;gap:6px;flex-wrap:wrap;justify-content:space-between}.exercise-library-item h3{font:800 14px Manrope,sans-serif;margin:12px 0 6px}.exercise-library-item p{font-size:11px;line-height:1.6;margin:6px 0}.exercise-library-item p:last-child{color:var(--muted)}.leaderboard-scopes{display:flex;gap:8px;margin:14px 0}.rank-row.rank-you{background:#f5f8ef;border-radius:12px;padding-left:8px;padding-right:8px}.workout-mode-tabs{margin:12px 0 16px}@media(max-width:900px){.exercise-library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.exercise-filters{grid-template-columns:1fr 1fr}.exercise-filters .field:first-child{grid-column:1/-1}}@media(max-width:560px){.exercise-library-grid,.exercise-filters{grid-template-columns:1fr}.exercise-filters .field:first-child{grid-column:auto}.exercise-library-item{padding:12px}}
+
+/* Selectable exercise-library cards */
+.library-select{display:flex;align-items:center;gap:9px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line, #e6e9e1);font-weight:650;cursor:pointer}
+.library-select input{width:18px;height:18px;accent-color:var(--accent, #c6f45b);cursor:pointer}
