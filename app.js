@@ -15,7 +15,7 @@
     {id:"D",name:"Full body",focus:"Full body · conditioning",time:"20–30 min",items:[["Backpack squats","3 × 12"],["Push-ups","3 × 8–12"],["Backpack rows","3 × 12"],["Reverse lunges","2 × 10 each leg"],["Mountain climbers","3 × 20"]]}
   ];
   function load(){try{return {...structuredClone(defaults),...JSON.parse(localStorage.getItem(STORE)||"{}")}}catch{return structuredClone(defaults)}}
-  function save(){localStorage.setItem(STORE,JSON.stringify(state))}
+  function save(){localStorage.setItem(STORE,JSON.stringify(state));if(window.LeanBuildCloud?.saveState)window.LeanBuildCloud.saveState(state)}
   function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
   function num(v){const n=Number(v);return Number.isFinite(n)?n:0}
   function today(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
@@ -26,7 +26,7 @@
   function latestWeight(){return [...state.weights].sort((a,b)=>b.date.localeCompare(a.date))[0]}
   function progress(current,target){return Math.min(100,Math.max(0,target?current/target*100:0))}
   function showToast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove("show"),2600)}
-  function setTab(tab){currentTab=tab;document.querySelectorAll(".nav-link").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));const titles={overview:"Overview",workouts:"Workouts",nutrition:"Nutrition",progress:"Progress",profile:"My targets"};document.getElementById("page-title").textContent=titles[tab]||"Overview";render()}
+  function setTab(tab){currentTab=tab;document.querySelectorAll(".nav-link").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));const titles={overview:"Overview",workouts:"Workouts",nutrition:"Nutrition",progress:"Progress",profile:"My targets",community:"Community"};document.getElementById("page-title").textContent=titles[tab]||"Overview";if(tab==="community"&&window.LeanBuildCommunity){window.LeanBuildCommunity.render();return}render()}
   function header(){document.getElementById("date-chip").textContent=new Date().toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"});document.getElementById("today-label").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"}).toUpperCase()}
   function stat(title,value,unit,icon,foot,percent){return `<article class="card"><div class="stat-head"><span>${title}</span><span class="stat-icon">${icon}</span></div><div class="stat-number">${value}<small> ${unit}</small></div><div class="stat-foot">${foot}</div>${percent===undefined?"":`<div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div>`}</article>`}
   function hero(){const done=state.sessions.filter(s=>s.date===today()).length;return `<section class="hero"><div class="hero-copy"><p class="eyebrow">THE LONG GAME</p><h2>Build strength.<br>One day at a time.</h2><p>Your goal isn't perfection. It's stacking enough good days that progress has nowhere else to go.</p><button class="btn primary" data-goto="workouts">Start a workout ↗</button></div><div class="hero-bubble"><div><strong>${done}</strong><span>SESSIONS<br>TODAY</span></div></div></section>`}
@@ -46,5 +46,6 @@
   let installPrompt=null;
   window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e;const banner=document.createElement("div");banner.className="install-banner";banner.id="install-banner";banner.innerHTML='<p><strong>Take LeanBuild with you.</strong> Install it on this device.</p><button class="btn primary small" id="install-button">Install app</button>';document.getElementById("app-content").prepend(banner);document.getElementById("install-button").onclick=async()=>{if(installPrompt){installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;banner.remove()}}});
   if("serviceWorker" in navigator && location.protocol!=="file:"){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+  window.LeanBuildApp={getState:()=>state,setState:(next)=>{if(next&&typeof next==="object"){state={...structuredClone(defaults),...next};localStorage.setItem(STORE,JSON.stringify(state));if(currentTab!=="community")render();}},refresh:()=>render(),getCurrentTab:()=>currentTab,showToast};
   setTab("overview");
 })();
