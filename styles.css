@@ -15,3 +15,22 @@
 /* Selectable exercise-library cards */
 .library-select{display:flex;align-items:center;gap:9px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line, #e6e9e1);font-weight:650;cursor:pointer}
 .library-select input{width:18px;height:18px;accent-color:var(--accent, #c6f45b);cursor:pointer}
+
+/* Compact strength logging: less card bulk, more training data */
+.exercise-library-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.exercise-library-item.compact-exercise{padding:12px;border-radius:12px;box-shadow:none}
+.compact-exercise .exercise-library-top{justify-content:flex-start;gap:5px}
+.compact-exercise .badge{padding:4px 7px;font-size:9px}
+.compact-exercise h3{font-size:13px;margin:8px 0 3px;line-height:1.35}
+.compact-exercise .exercise-equipment{margin:3px 0;font-size:10px}
+.compact-exercise .exercise-details{font-size:10px;line-height:1.45;margin:5px 0 9px;min-height:2.8em}
+.exercise-log-fields{display:grid;grid-template-columns:.8fr .8fr 1.2fr;gap:6px;margin-top:8px}
+.exercise-log-fields label{display:grid;gap:4px;min-width:0;color:var(--muted);font-size:9px;font-weight:700}
+.exercise-log-fields input{width:100%;min-width:0;padding:7px 5px;border:1px solid #e1e5dd;background:#fbfcfa;border-radius:7px;color:var(--ink);font:inherit;font-size:11px}
+.library-select{margin-top:9px;padding-top:8px;font-size:11px;gap:7px}
+.library-select input{width:15px;height:15px}
+.compact-exercise.is-selected{border-color:#a9d957;background:#fbfdf7}
+.exercise-log-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.exercise-log-toolbar .form-actions{margin:0}
+@media(max-width:1000px){.exercise-library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.exercise-library-grid{grid-template-columns:1fr}.exercise-log-fields{grid-template-columns:1fr 1fr 1.2fr}.compact-exercise .exercise-details{min-height:0}}
