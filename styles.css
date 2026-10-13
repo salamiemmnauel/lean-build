@@ -34,3 +34,6 @@
 .exercise-log-toolbar .form-actions{margin:0}
 @media(max-width:1000px){.exercise-library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.exercise-library-grid{grid-template-columns:1fr}.exercise-log-fields{grid-template-columns:1fr 1fr 1.2fr}.compact-exercise .exercise-details{min-height:0}}
+
+/* Profile avatar */
+.avatar{background-position:center;background-size:cover;display:grid;place-items:center;overflow:hidden;flex-shrink:0;cursor:pointer;box-shadow:0 0 0 2px #ffffff90;transition:transform .15s,box-shadow .15s}.avatar:hover{transform:translateY(-1px);box-shadow:0 0 0 3px #b7e55c}.avatar.has-photo{color:transparent}.profile-photo-row{display:flex;align-items:center;gap:15px;padding:16px 0 20px;margin-bottom:18px;border-bottom:1px solid var(--line)}.profile-photo-preview{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;background:#c7f266;color:#1b2815;font:800 20px Manrope,sans-serif;background-size:cover;background-position:center;border:3px solid #eef4e5}.profile-photo-preview.has-photo{color:transparent}.profile-photo-controls{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap;min-width:0}.profile-photo-controls strong{width:100%;font-size:13px}.profile-photo-controls p{width:100%;margin:0 0 3px}.upload-photo-label{display:inline-flex;align-items:center;cursor:pointer}
